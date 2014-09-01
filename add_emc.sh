@@ -4,5 +4,5 @@
 # emacs --daemon has already been started.
 
 echo '===> UNTESTED: You should verify this works.'
-echo 'alias emc='emacsclient'' >> ~/.bash_profile
+echo 'alias emc='emacsclient --alternate-editor=""'' >> ~/.bash_profile
 source ~/.bash_profile
