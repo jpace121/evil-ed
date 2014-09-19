@@ -1,4 +1,5 @@
 ;;; init.el --- Jimmy's emacs config
+;; This needs "some" organizing.  Enjoy!
 
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
@@ -29,7 +30,7 @@
 ;(setq-default evil-symbol-word-search t)
 
 (require 'auto-complete-auctex)
-(setq TeX-auto-save t)
+;(setq TeX-auto-save t) ;;evil command litters files
 (setq TeX-parse-self t)
 (setq TeX-save-query nil)
 (add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
@@ -48,6 +49,7 @@
 ;(define-key global-map (kbd "RET") 'newline-and-indent)
 (setq c-default-style "bsd"
       c-basic-offset 4)
+(c-set-offset 'case-label '+)
 
 (autoload 'octave-mode "octave-mod" nil t)
 (setq auto-mode-alist
@@ -60,6 +62,8 @@
 
 (require 'yasnippet)
 (yas-global-mode 1)
+
+(setq ace-jump-mode-scope 'frame)
 
 ;;This makes Ctrl-e work like emacs normally does.
 ;;(I don't use that combo in vim, and it looks worthless)
@@ -74,7 +78,9 @@
   "j" 'evil-ace-jump-line-mode
   "s" 'ace-jump-mode
   "x" 'execute-extended-command
-  "lc" 'TeX-command-master)
+  ;"q" 'kill-buffer
+  "lc" 'TeX-command-master
+  "cc" 'compile)
 ;would be better if could replace mode specific stuff like 'lc' with
 ;stuff that only worked in the correct mode
 
