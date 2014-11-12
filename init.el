@@ -40,7 +40,7 @@
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (defun jp-return ()
-    (define-key evil-insert-state-map (kbd "RET") 'newline-and-indent))
+    (define-key evil-insert-state-map (kbd "RET") 'evil-ret-and-indent))
 (add-hook 'prog-mode-hook 'jp-return)
 
 (setq-default tab-width 4 indent-tabs-mode nil)
