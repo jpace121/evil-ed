@@ -14,9 +14,6 @@
 (global-evil-leader-mode)
 (evil-leader/set-leader "<SPC>")
 
-(require 'evil)
-(evil-mode t)
-
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq backup-inhibited t)
@@ -41,19 +38,31 @@
 ;;Allow GUI Emacs to see pdflatex
 (setenv "PATH" (concat "/usr/texbin" ":" (getenv "PATH")))
 
-(evil-set-initial-state 'eshell-mode 'insert)
-
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(defun jp-return ()
+    (define-key evil-insert-state-map (kbd "RET") 'newline-and-indent))
+(add-hook 'prog-mode-hook 'jp-return)
 
-(define-key evil-insert-state-map (kbd "RET") 'newline-and-indent)
-;(define-key global-map (kbd "RET") 'newline-and-indent)
+(setq-default tab-width 4 indent-tabs-mode nil)
+
 (setq c-default-style "bsd"
       c-basic-offset 4)
 (c-set-offset 'case-label '+)
 
-(autoload 'octave-mode "octave-mod" nil t)
-(setq auto-mode-alist
-    (cons '("\\.m$" . octave-mode) auto-mode-alist))
+;:Octave mode was great fail indent wise.
+;(autoload 'octave-mode "octave-mod" nil t)
+;(setq auto-mode-alist
+    ;(cons '("\\.m$" . octave-mode) auto-mode-alist))
+;(add-hook 'octave-mode-hook 'auto-complete-mode)
+;(add-hook 'octave-mode-hook (lambda ()
+  ;(setq indent-tabs-mode t)
+  ;(setq tab-stop-list (number-sequence 2 200 2))
+  ;(setq tab-width 4)
+  ;(setq indent-line-function 'insert-tab) ))
+
+;Only remaining bug, emacs doesn't unindent end statments
+(add-to-list 'load-path "~/.emacs.d/jimmy-files/matlab-emacs")
+(load-library "matlab-load")
 
 (autoload 'markdown-mode "markdown-mode"
      "Major mode for editing Markdown files" t)
@@ -72,20 +81,39 @@
 (define-key evil-visual-state-map (kbd "C-e") 'evil-end-of-line)
 (define-key evil-motion-state-map (kbd "C-e") 'evil-end-of-line)
 
+(add-to-list 'load-path (concat user-emacs-directory "jimmy-files"))
+(require 'my-eshell)
+;(evil-set-initial-state 'esh-mode 'insert)
+;(eval-after-load 'esh-mode
+  ;'(define-key 'esh-mode-map (kbd "RET") 'eshell-send-input))
+
+;(defun jp/bind-enter-eshell ()
+  ;"In eshell mode, let enter mean eshell send input. "
+  ;(local-set-ket (kbd "RET") 'eshell-send-input))
+;(add-hook 'esh-mode-hook 'jp/bind-enter-eshell)
+
 (evil-leader/set-key
   "f" 'evil-ace-jump-char-mode
-  "s" 'evil-ace-jump-word-mode
+  ;"s" 'evil-ace-jump-word-mode
+  ;"s" 'ace-jump-mode
+  "s" 'evil-ace-jump-char-mode
   "j" 'evil-ace-jump-line-mode
-  "s" 'ace-jump-mode
   "x" 'execute-extended-command
   ;"q" 'kill-buffer
   "lc" 'TeX-command-master
   "cc" 'compile)
 ;would be better if could replace mode specific stuff like 'lc' with
 ;stuff that only worked in the correct mode
+;(evil-leader/set-key-for-mode 'python-mode "." 'jedi:goto-definition)
+;^that's how you do it
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (evil-set-initial-state 'org-mode 'emacs)
+
+;;Multple cursosrs is installed, but not used because of stupid.
+
+(require 'evil)
+(evil-mode t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
