@@ -92,7 +92,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;Only add the maltab stuff if on a Mac, and is matlab is installed,
 ;if using matlab on linux would need to change this stuff
 (if (and (eq system-type 'darwin) (file-exists-p "/Applications/MATLAB_R2013a.app/bin"))
-  (
+  (progn
     (setq exec-path (append exec-path '("/Applications/MATLAB_R2013a.app/bin")))
     (custom-set-variables
      '(matlab-shell-command-switches '("-nodesktop -nosplash")))
