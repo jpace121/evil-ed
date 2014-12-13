@@ -1,4 +1,4 @@
-;;; init.el --- Jimmy's emacs config
+;; init.el --- Jimmy's emacs config
 ;; This needs "some" organizing.  Enjoy!
 
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -17,6 +17,33 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq backup-inhibited t)
+
+;Fix escape to do everything like vim.
+;Source: http://juanjoalvarez.net/es/detail/2014/sep/19/vim-emacsevil-chaotic-migration-guide/
+(defun minibuffer-keyboard-quit ()
+  "Abort recursive edit.
+In Delete Selection mode, if the mark is active, just deactivate it;
+then it takes a second \\[keyboard-quit] to abort the minibuffer."
+  (interactive)
+  (if (and delete-selection-mode transient-mark-mode mark-active)
+      (setq deactivate-mark  t)
+    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+    (abort-recursive-edit)))
+(define-key evil-normal-state-map [escape] 'keyboard-quit)
+(define-key evil-visual-state-map [escape] 'keyboard-quit)
+(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+(global-set-key [escape] 'evil-exit-emacs-state)
+
+;Including this for historical sake.
+;Long term, I'm going to stick to using an external shell for
+;almost everything. If there are tasks that commonly need interaction
+;with the outside world, I'll write little functions for them.
+(require 'multi-term)
+(setq multi-term-program "/bin/bash")
 
 (require 'auto-complete-config)
 (ac-config-default)
@@ -61,6 +88,11 @@
   ;(setq indent-line-function 'insert-tab) ))
 
 ;Only remaining bug, emacs doesn't unindent end statments
+;Add matlab to path on Mac so emacs gui can see it
+(if (eq system-type 'darwin) 
+    (setq exec-path (append exec-path '("/Applications/MATLAB_R2013a.app/bin"))))
+(custom-set-variables
+ '(matlab-shell-command-switches '("-nodesktop -nosplash")))
 (add-to-list 'load-path "~/.emacs.d/jimmy-files/matlab-emacs")
 (load-library "matlab-load")
 
@@ -83,14 +115,6 @@
 
 (add-to-list 'load-path (concat user-emacs-directory "jimmy-files"))
 (require 'my-eshell)
-;(evil-set-initial-state 'esh-mode 'insert)
-;(eval-after-load 'esh-mode
-  ;'(define-key 'esh-mode-map (kbd "RET") 'eshell-send-input))
-
-;(defun jp/bind-enter-eshell ()
-  ;"In eshell mode, let enter mean eshell send input. "
-  ;(local-set-ket (kbd "RET") 'eshell-send-input))
-;(add-hook 'esh-mode-hook 'jp/bind-enter-eshell)
 
 (evil-leader/set-key
   "f" 'evil-ace-jump-char-mode
@@ -100,17 +124,22 @@
   "j" 'evil-ace-jump-line-mode
   "x" 'execute-extended-command
   ;"q" 'kill-buffer
-  "lc" 'TeX-command-master
-  "cc" 'compile)
-;would be better if could replace mode specific stuff like 'lc' with
-;stuff that only worked in the correct mode
+  )
 ;(evil-leader/set-key-for-mode 'python-mode "." 'jedi:goto-definition)
-;^that's how you do it
+;Mode specific leader keys. Supposedly can be done also like above
+(defun jp-add-tex-c () (evil-leader/set-key "c" 'TeX-command-master))
+(add-hook 'TeX-mode-hook 'jp-add-tex-c)
+(defun jp-add-c-c () (evil-leader/set-key "c" 'compile))
+(add-hook 'c-mode-common-hook 'jp-add-c-c)
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-(evil-set-initial-state 'org-mode 'emacs)
+;(evil-set-initial-state 'org-mode 'emacs)
 
-;;Multple cursosrs is installed, but not used because of stupid.
+;Multiple cursors is rather broken with evil-mode.
+;(require 'multiple-cursors)
+;(define-key evil-insert-state-map (kbd "C-n") 'mc/mark-next-like-this)
+;(define-key evil-insert-state-map (kbd "C-b") 'mc/skip-to-next-like-this)
+
 
 (require 'evil)
 (evil-mode t)
