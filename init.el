@@ -148,6 +148,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;(define-key evil-insert-state-map (kbd "C-n") 'mc/mark-next-like-this)
 ;(define-key evil-insert-state-map (kbd "C-b") 'mc/skip-to-next-like-this)
 
+(setq scroll-conservatively 1)
 
 (require 'evil)
 (evil-mode t)
