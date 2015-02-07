@@ -131,14 +131,12 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   "x" 'execute-extended-command
   ;"q" 'kill-buffer
   )
-;(evil-leader/set-key-for-mode 'python-mode "." 'jedi:goto-definition)
-;Mode specific leader keys. Supposedly can be done also like above
-(defun jp-add-tex-c () (evil-leader/set-key "c" 'TeX-command-master))
-(add-hook 'TeX-mode-hook 'jp-add-tex-c)
-(defun jp-add-c-c () (evil-leader/set-key "c" 'compile))
-(add-hook 'c-mode-common-hook 'jp-add-c-c)
-(defun jp-add-matlab-c () (evil-leader/set-key "c" 'matlab-shell-save-and-go))
-(add-hook 'matlab-mode-hook 'jp-add-matlab-c)
+;Mode specific leader keys
+(evil-leader/set-key-for-mode 'latex-mode "c" 'TeX-command-master)
+(evil-leader/set-key-for-mode 'c-mode "c" 'compile)
+(evil-leader/set-key-for-mode 'matlab-mode "c" 'matlab-shell-save-and-go)
+;(defun jp-add-matlab-c () (evil-leader/set-key "c" 'matlab-shell-save-and-go))
+;(add-hook 'matlab-mode-hook 'jp-add-matlab-c)
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 ;(evil-set-initial-state 'org-mode 'emacs)
