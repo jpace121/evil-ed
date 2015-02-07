@@ -38,6 +38,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 (global-set-key [escape] 'evil-exit-emacs-state)
 
+;Try out ido mode
+;(setq ido-enable-flex-matching t)
+;(setq ido-everywhere t)
+;(ido-mode 1)
+
 ;Including this for historical sake.
 ;Long term, I'm going to stick to using an external shell for
 ;almost everything. If there are tasks that commonly need interaction
