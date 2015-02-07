@@ -98,6 +98,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
      '(matlab-shell-command-switches '("-nodesktop -nosplash")))
     (add-to-list 'load-path "~/.emacs.d/jimmy-files/matlab-emacs")
     (load-library "matlab-load")
+    (require 'matlab-publish)
   )
 )
 
