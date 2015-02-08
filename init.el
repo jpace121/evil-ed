@@ -141,6 +141,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (evil-leader/set-key-for-mode 'latex-mode "c" 'TeX-command-master)
 (evil-leader/set-key-for-mode 'c-mode "c" 'compile)
 (evil-leader/set-key-for-mode 'matlab-mode "c" 'matlab-shell-save-and-go)
+(evil-leader/set-key-for-mode 'matlab-mode "p" 'matlab-publish-file-latex)
 ;(defun jp-add-matlab-c () (evil-leader/set-key "c" 'matlab-shell-save-and-go))
 ;(add-hook 'matlab-mode-hook 'jp-add-matlab-c)
 
