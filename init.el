@@ -102,17 +102,19 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;Only remaining bug, emacs doesn't unindent end statments
 ;Add matlab to path on Mac so emacs gui can see it
-;Only add the maltab stuff if on a Mac, and is matlab is installed,
-;if using matlab on linux would need to change this stuff
 (if (and (eq system-type 'darwin) (file-exists-p "/Applications/MATLAB_R2013a.app/bin"))
-  (progn
     (setq exec-path (append exec-path '("/Applications/MATLAB_R2013a.app/bin")))
-    (custom-set-variables
+)
+
+;Only add the maltab stuff if on a Mac, and is matlab is installed,
+;if using matlab on linux would need to change this stuff?
+(if (executable-find "matlab")
+   (progn
+   (custom-set-variables
      '(matlab-shell-command-switches '("-nodesktop -nosplash")))
     (add-to-list 'load-path "~/.emacs.d/jimmy-files/matlab-emacs")
     (load-library "matlab-load")
-    (require 'matlab-publish)
-  )
+    (require 'matlab-publish))
 )
 
 
