@@ -97,6 +97,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   ;(setq tab-width 4)
   ;(setq indent-line-function 'insert-tab) ))
 
+;Add column to modeline
+(column-number-mode 't)
+
 ;Only remaining bug, emacs doesn't unindent end statments
 ;Add matlab to path on Mac so emacs gui can see it
 ;Only add the maltab stuff if on a Mac, and is matlab is installed,
