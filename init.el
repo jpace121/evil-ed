@@ -137,6 +137,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 (add-to-list 'load-path (concat user-emacs-directory "jimmy-files"))
 (require 'my-eshell)
+(load-library "jp-eshell")
 
 (evil-leader/set-key
   "f" 'evil-ace-jump-char-mode
