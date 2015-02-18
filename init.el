@@ -39,9 +39,14 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (global-set-key [escape] 'evil-exit-emacs-state)
 
 ;Try out ido mode
+;;ido is too anooying normally, will kep this and the fix here for archive
+;;purposes
 ;(setq ido-enable-flex-matching t)
 ;(setq ido-everywhere t)
 ;(ido-mode 1)
+;(define-key evil-ex-map "e " 'ido-find-file)
+;(define-key evil-ex-map "w " 'ido-write-file)
+;(define-key evil-ex-map "b " 'ido-switch-buffer)
 
 ;Including this for historical sake.
 ;Long term, I'm going to stick to using an external shell for
