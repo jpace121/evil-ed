@@ -141,13 +141,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 (evil-leader/set-key
   "f" 'evil-ace-jump-char-mode
-  ;"s" 'evil-ace-jump-word-mode
-  ;"s" 'ace-jump-mode
   "s" 'evil-ace-jump-char-mode
   "j" 'evil-ace-jump-line-mode
   "x" 'execute-extended-command
   "b" 'buffer-menu
-  ;"q" 'kill-buffer
   )
 ;Mode specific leader keys
 (evil-leader/set-key-for-mode 'latex-mode "c" 'TeX-command-master)
