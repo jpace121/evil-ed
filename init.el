@@ -146,6 +146,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   "s" 'evil-ace-jump-char-mode
   "j" 'evil-ace-jump-line-mode
   "x" 'execute-extended-command
+  "b" 'buffer-menu
   ;"q" 'kill-buffer
   )
 ;Mode specific leader keys
