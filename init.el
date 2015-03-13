@@ -139,6 +139,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (require 'my-eshell)
 (load-library "jp-eshell")
 
+(require 'navigate)
+
 (evil-leader/set-key
   "f" 'evil-ace-jump-char-mode
   "s" 'evil-ace-jump-char-mode
