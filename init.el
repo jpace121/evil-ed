@@ -8,6 +8,10 @@
 
 (package-initialize)
 
+(add-to-list 'load-path (concat user-emacs-directory "jimmy-files"))
+
+(require 'navigate)
+
 (fset 'yes-or-no-p 'y-or-n-p)
 (show-paren-mode t)
 
@@ -135,11 +139,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key evil-visual-state-map (kbd "C-e") 'evil-end-of-line)
 (define-key evil-motion-state-map (kbd "C-e") 'evil-end-of-line)
 
-(add-to-list 'load-path (concat user-emacs-directory "jimmy-files"))
 (require 'my-eshell)
 (load-library "jp-eshell")
 
-(require 'navigate)
 
 (evil-leader/set-key
   "f" 'evil-ace-jump-char-mode
