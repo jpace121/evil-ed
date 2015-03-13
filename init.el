@@ -142,6 +142,17 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (require 'my-eshell)
 (load-library "jp-eshell")
 
+;Rust compile commands
+(defun jp-cargo-build ()
+    (interactive)
+    (shell-command "cargo build")
+)
+
+(defun jp-cargo-test ()
+    (interactive)
+    (shell-command "cargo test")
+)
+
 
 (evil-leader/set-key
   "f" 'evil-ace-jump-char-mode
@@ -159,8 +170,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (evil-leader/set-key-for-mode 'c-mode "c" 'compile)
 (evil-leader/set-key-for-mode 'matlab-mode "c" 'matlab-shell-save-and-go)
 (evil-leader/set-key-for-mode 'matlab-mode "p" 'matlab-publish-file-latex)
-;(defun jp-add-matlab-c () (evil-leader/set-key "c" 'matlab-shell-save-and-go))
-;(add-hook 'matlab-mode-hook 'jp-add-matlab-c)
+(evil-leader/set-key-for-mode 'rust-mode "c" 'jp-cargo-build)
+(evil-leader/set-key-for-mode 'rust-mode "t" 'jp-cargo-test)
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 ;(evil-set-initial-state 'org-mode 'emacs)
