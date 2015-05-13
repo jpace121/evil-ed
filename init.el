@@ -153,6 +153,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (shell-command "cargo test")
 )
 
+;Android
+(require 'android-mode) ;do I need this?
+;;(custom-set-variables '(android-mode-skd-dir "~/Library/Android/sdk"))
+
 
 (evil-leader/set-key
   "f" 'evil-ace-jump-char-mode
