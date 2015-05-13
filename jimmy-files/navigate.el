@@ -49,7 +49,7 @@
     (substring direction 0 1)))
 
 (define-key evil-normal-state-map
-            (kbd "C-g")
+            (kbd "C-g") ;such broken!
             (lambda ()
               (interactive)
               (tmux-navigate "left")))
