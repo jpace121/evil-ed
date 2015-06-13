@@ -148,11 +148,13 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;Rust compile commands
 (defun jp-cargo-build ()
     (interactive)
+    (save-buffer)
     (shell-command "cargo build")
 )
 
 (defun jp-cargo-test ()
     (interactive)
+    (save-buffer)
     (shell-command "cargo test")
 )
 
