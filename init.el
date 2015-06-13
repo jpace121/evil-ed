@@ -80,6 +80,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (setenv "PATH" (concat "/usr/texbin" ":" (getenv "PATH")))
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(setq-default flycheck-flake8rc
+    (concat user-emacs-directory "jimmy-files/flake8_settings.yaml"))
+
 (defun jp-return ()
     (define-key evil-insert-state-map (kbd "RET") 'evil-ret-and-indent))
 (add-hook 'prog-mode-hook 'jp-return)
