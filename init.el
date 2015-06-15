@@ -113,6 +113,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (setq exec-path (append exec-path '("/Applications/MATLAB_R2013a.app/bin")))
 )
 
+
 ;Only add the maltab stuff if on a Mac, and is matlab is installed,
 ;if using matlab on linux would need to change this stuff?
 (if (executable-find "matlab")
@@ -123,7 +124,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (load-library "matlab-load")
     (require 'matlab-publish))
 )
-
 
 (autoload 'markdown-mode "markdown-mode"
      "Major mode for editing Markdown files" t)
@@ -158,6 +158,13 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (shell-command "cargo test")
 )
 
+(defun jp-python-run ()
+    (interactive)
+    (save-buffer)
+    (python-shell-send-buffer)
+    (python-shell-switch-to-shell)
+)
+
 ;Android
 (require 'android-mode) ;do I need this?
 ;;(custom-set-variables '(android-mode-skd-dir "~/Library/Android/sdk"))
@@ -181,6 +188,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (evil-leader/set-key-for-mode 'matlab-mode "p" 'matlab-publish-file-latex)
 (evil-leader/set-key-for-mode 'rust-mode "c" 'jp-cargo-build)
 (evil-leader/set-key-for-mode 'rust-mode "t" 'jp-cargo-test)
+(evil-leader/set-key-for-mode 'python-mode "c" 'jp-python-run)
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 ;(evil-set-initial-state 'org-mode 'emacs)
