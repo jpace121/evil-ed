@@ -5,13 +5,16 @@ function emacsinit(clientcommand)
         % Disable built-in editor showing up for debugging
         com.mathworks.services.Prefs.setBooleanPref('EditorGraphicalDebugging', false);
         % Disable the built-in editor for normal editing
-        com.mathworks.services.Prefs.setBooleanPref('EditorBuiltinEditor', false);
+        %com.mathworks.services.Prefs.setBooleanPref('EditorBuiltinEditor', false);
         % Use emacsclient no-wait to send edit requests to a
         % running emacs.
         if nargin == 0
             clientcommand = 'emacsclient -n';
         end
-        com.mathworks.services.Prefs.setStringPref('EditorOtherEditor', clientcommand);
+        %com.mathworks.services.Prefs.setStringPref('EditorOtherEditor',
+        %clientcommand);
+        %JWP, Remove line above becasue it chnages matalb settings
+        %in GUI mode as well
     end
 
     % Use the desktop hotlinking system in MATLAB Shell.  matlab-shell
