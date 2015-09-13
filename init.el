@@ -189,6 +189,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (evil-leader/set-key-for-mode 'rust-mode "c" 'jp-cargo-build)
 (evil-leader/set-key-for-mode 'rust-mode "t" 'jp-cargo-test)
 (evil-leader/set-key-for-mode 'python-mode "c" 'jp-python-run)
+(evil-leader/set-key-for-mode 'matlab-shell-mode "c" 'buffer-menu)
+;^no worky, wrong name?
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 ;(evil-set-initial-state 'org-mode 'emacs)
