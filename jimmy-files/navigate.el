@@ -17,58 +17,61 @@
 
 ;;; Code:
 
-(require 'evil)
+;;Code is removed. When in tmux, use tmux panes not
+;;emacs frames.
 
-(defgroup navigate nil
-  "seamlessly navigate between Emacs and tmux"
-  :prefix "navigate-"
-  :group 'evil)
-
-; Without unsetting C-h this is useless
-;(global-unset-key (kbd "C-h"))
-
-; This requires windmove commands
-(when (fboundp 'windmove-default-keybindings)
-  (windmove-default-keybindings))
-
-(defun tmux-navigate (direction)
-  (let
-    ((cmd (concat "windmove-" direction)))
-      (condition-case nil
-          (funcall (read cmd))
-        (error
-          (tmux-command direction)))))
-
-(defun tmux-command (direction)
-  (shell-command-to-string
-    (concat "tmux select-pane -"
-      (tmux-direction direction))))
-
-(defun tmux-direction (direction)
-  (upcase
-    (substring direction 0 1)))
-
-(define-key evil-normal-state-map
-            (kbd "C-g") ;such broken!
-            (lambda ()
-              (interactive)
-              (tmux-navigate "left")))
-(define-key evil-normal-state-map
-            (kbd "C-j")
-            (lambda ()
-              (interactive)
-              (tmux-navigate "down")))
-(define-key evil-normal-state-map
-            (kbd "C-k")
-            (lambda ()
-              (interactive)
-              (tmux-navigate "up")))
-(define-key evil-normal-state-map
-            (kbd "C-l")
-            (lambda ()
-              (interactive)
-              (tmux-navigate "right")))
-
+;(require 'evil)
+;
+;(defgroup navigate nil
+  ;"seamlessly navigate between Emacs and tmux"
+  ;:prefix "navigate-"
+  ;:group 'evil)
+;
+;; Without unsetting C-h this is useless
+;;(global-unset-key (kbd "C-h"))
+;
+;; This requires windmove commands
+;(when (fboundp 'windmove-default-keybindings)
+  ;(windmove-default-keybindings))
+;
+;(defun tmux-navigate (direction)
+  ;(let
+    ;((cmd (concat "windmove-" direction)))
+      ;(condition-case nil
+          ;(funcall (read cmd))
+        ;(error
+          ;(tmux-command direction)))))
+;
+;(defun tmux-command (direction)
+  ;(shell-command-to-string
+    ;(concat "tmux select-pane -"
+      ;(tmux-direction direction))))
+;
+;(defun tmux-direction (direction)
+  ;(upcase
+    ;(substring direction 0 1)))
+;
+;(define-key evil-normal-state-map
+            ;(kbd "C-g") ;such broken!
+            ;(lambda ()
+              ;(interactive)
+              ;(tmux-navigate "left")))
+;(define-key evil-normal-state-map
+            ;(kbd "C-j")
+            ;(lambda ()
+              ;(interactive)
+              ;(tmux-navigate "down")))
+;(define-key evil-normal-state-map
+            ;(kbd "C-k")
+            ;(lambda ()
+              ;(interactive)
+              ;(tmux-navigate "up")))
+;(define-key evil-normal-state-map
+            ;(kbd "C-l")
+            ;(lambda ()
+              ;(interactive)
+              ;(tmux-navigate "right")))
+;
 (provide 'navigate)
 
 ;;; navigate.el ends here
