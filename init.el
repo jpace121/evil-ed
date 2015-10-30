@@ -176,10 +176,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   "j" 'evil-ace-jump-line-mode
   "x" 'execute-extended-command
   "b" 'buffer-menu
-  "wj" 'evil-window-down
-  "wk" 'evil-window-up
-  "wh" 'evil-window-left
-  "wl" 'evil-window-right
+  "w" 'save-buffer
+  ;"wj" 'evil-window-down
+  ;"wk" 'evil-window-up
+  ;"wh" 'evil-window-left
+  ;"wl" 'evil-window-right
   )
 ;Mode specific leader keys
 (evil-leader/set-key-for-mode 'latex-mode "c" 'TeX-command-master)
