@@ -93,6 +93,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       c-basic-offset 4)
 (c-set-offset 'case-label '+)
 
+;;Open Arduino in cpp mode until I can write my own Arduino mode.
+(add-to-list 'auto-mode-alist '("\\.ino\\'" . c++-mode))
+
 ;:Octave mode was great fail indent wise.
 ;(autoload 'octave-mode "octave-mod" nil t)
 ;(setq auto-mode-alist
