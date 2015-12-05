@@ -17,6 +17,7 @@ I have:
    Clang for C/C++
    flake8 for python
    chktex
+   hunspell
 
 
 

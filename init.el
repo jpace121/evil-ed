@@ -78,6 +78,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
             '(("PDF Viewer" "open %o")))
 ;;Allow GUI Emacs to see pdflatex
 (setenv "PATH" (concat "/usr/texbin" ":" (getenv "PATH")))
+;;Spell check for latex
+(add-hook 'LaTeX-mode-hook #'turn-on-flyspell)
+(when (executable-find "hunspell")
+    (setq-default ispell-program-name "hunspell")
+    (setq ispell-really-hunspell t))
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (setq-default flycheck-flake8rc
