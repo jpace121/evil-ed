@@ -22,6 +22,9 @@
 (setq auto-save-default nil)
 (setq backup-inhibited t)
 
+;http://superuser.com/questions/712237/safely-reload-files-which-are-changed-on-disc
+(global-auto-revert-mode 1)
+
 ;Fix escape to do everything like vim.
 ;Source: http://juanjoalvarez.net/es/detail/2014/sep/19/vim-emacsevil-chaotic-migration-guide/
 (defun minibuffer-keyboard-quit ()
