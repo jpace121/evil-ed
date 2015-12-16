@@ -18,6 +18,7 @@
 (global-evil-leader-mode)
 (evil-leader/set-leader "<SPC>")
 
+; I need to figure out if this is actaully good at this point.
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq backup-inhibited t)
@@ -86,6 +87,13 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (when (executable-find "hunspell")
     (setq-default ispell-program-name "hunspell")
     (setq ispell-really-hunspell t))
+
+;Grammar checking
+;; Needs to be Linuxized
+(require 'langtool)
+;(setq langtool-language-tool-jar "/Users/jimmy/.emacs.d/jimmy-files/LanguageTool-3.1/languagetool-commandline.jar")
+(setq langtool-language-tool-jar (concat user-emacs-directory "jimmy-files/LanguageTool-3.1/languagetool-commandline.jar"))
+(setq langtool-default-language "en-US")
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (setq-default flycheck-flake8rc
@@ -195,6 +203,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   )
 ;Mode specific leader keys
 (evil-leader/set-key-for-mode 'latex-mode "c" 'TeX-command-master)
+(evil-leader/set-key-for-mode 'latex-mode "tc" 'langtool-check-buffer)
+(evil-leader/set-key-for-mode 'latex-mode "tq" 'langtool-check-done)
 (evil-leader/set-key-for-mode 'c-mode "c" 'compile)
 (evil-leader/set-key-for-mode 'matlab-mode "c" 'matlab-shell-save-and-go)
 (evil-leader/set-key-for-mode 'matlab-mode "p" 'matlab-publish-file-latex)
