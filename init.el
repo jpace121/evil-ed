@@ -196,6 +196,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   "x" 'execute-extended-command
   "b" 'buffer-menu
   "w" 'save-buffer
+  "r" 'revert-buffer
   ;"wj" 'evil-window-down
   ;"wk" 'evil-window-up
   ;"wh" 'evil-window-left
@@ -203,18 +204,22 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   )
 ;Mode specific leader keys
 (evil-leader/set-key-for-mode 'latex-mode "c" 'TeX-command-master)
-(evil-leader/set-key-for-mode 'latex-mode "tc" 'langtool-check-buffer)
-(evil-leader/set-key-for-mode 'latex-mode "tq" 'langtool-check-done)
+(evil-leader/set-key-for-mode 'latex-mode "lc" 'langtool-check-buffer)
+(evil-leader/set-key-for-mode 'latex-mode "lq" 'langtool-check-done)
 (evil-leader/set-key-for-mode 'c-mode "c" 'compile)
 (evil-leader/set-key-for-mode 'matlab-mode "c" 'matlab-shell-save-and-go)
 (evil-leader/set-key-for-mode 'matlab-mode "p" 'matlab-publish-file-latex)
 (evil-leader/set-key-for-mode 'rust-mode "c" 'jp-cargo-build)
 (evil-leader/set-key-for-mode 'rust-mode "t" 'jp-cargo-test)
 (evil-leader/set-key-for-mode 'python-mode "c" 'jp-python-run)
+(evil-leader/set-key-for-mode 'org-mode "t" 'org-todo)
+(evil-leader/set-key-for-mode 'org-mode "c" 'org-toggle-checkbox)
+(evil-leader/set-key-for-mode 'org-mode "o" 'org-insert-todo-heading)
 (evil-leader/set-key-for-mode 'matlab-shell-mode "c" 'buffer-menu)
 ;^no worky, wrong name?
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+(evil-define-key 'normal org-mode-map (kbd "TAB") 'org-cycle)
 ;(evil-set-initial-state 'org-mode 'emacs)
 
 ;Multiple cursors is rather broken with evil-mode.
