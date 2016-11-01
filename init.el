@@ -183,6 +183,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (python-shell-switch-to-shell)
 )
 
+(defun jp-matlab-run ()
+    (interactive)
+    (message "MATLAB-mode buggy. Please launch in tmux.")
+)
+
 ;Android
 (require 'android-mode) ;do I need this?
 ;;(custom-set-variables '(android-mode-skd-dir "~/Library/Android/sdk"))
@@ -206,15 +211,16 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (evil-leader/set-key-for-mode 'latex-mode "lc" 'langtool-check-buffer)
 (evil-leader/set-key-for-mode 'latex-mode "lq" 'langtool-check-done)
 (evil-leader/set-key-for-mode 'c-mode "c" 'compile)
-(evil-leader/set-key-for-mode 'matlab-mode "c" 'matlab-shell-save-and-go)
-(evil-leader/set-key-for-mode 'matlab-mode "p" 'matlab-publish-file-latex)
+;(evil-leader/set-key-for-mode 'matlab-mode "c" 'matlab-shell-save-and-go)
+(evil-leader/set-key-for-mode 'matlab-mode "c" 'jp-matlab-run)
+;(evil-leader/set-key-for-mode 'matlab-mode "p" 'matlab-publish-file-latex)
 (evil-leader/set-key-for-mode 'rust-mode "c" 'jp-cargo-build)
 (evil-leader/set-key-for-mode 'rust-mode "t" 'jp-cargo-test)
 (evil-leader/set-key-for-mode 'python-mode "c" 'jp-python-run)
 (evil-leader/set-key-for-mode 'org-mode "t" 'org-todo)
 (evil-leader/set-key-for-mode 'org-mode "c" 'org-toggle-checkbox)
 (evil-leader/set-key-for-mode 'org-mode "o" 'org-insert-todo-heading)
-(evil-leader/set-key-for-mode 'matlab-shell-mode "c" 'buffer-menu)
+;(evil-leader/set-key-for-mode 'matlab-shell-mode "c" 'buffer-menu)
 ;^no worky, wrong name?
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
