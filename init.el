@@ -128,10 +128,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;Only remaining bug, emacs doesn't unindent end statments
 ;Add matlab to path on Mac so emacs gui can see it
-(if (and (eq system-type 'darwin) (file-exists-p "/Applications/MATLAB_R2013a.app/bin"))
+(if (and (eq system-type 'darwin) (file-exists-p "/Applications/MATLAB_R2016b.app/bin"))
     (setq exec-path (append exec-path '("/Applications/MATLAB_R2013a.app/bin")))
 )
-
 
 ;Only add the maltab stuff if on a Mac, and is matlab is installed,
 ;if using matlab on linux would need to change this stuff?
@@ -235,3 +234,5 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;(setq custom-file "~/.emacs.d/custom.el")
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file)
+
+(menu-bar-mode -1)
