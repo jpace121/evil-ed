@@ -31,7 +31,7 @@
  '(matlab-shell-command-switches (quote ("-nodesktop -nosplash")))
  '(package-selected-packages
    (quote
-    (zenburn-theme rust-mode org multiple-cursors multi-term monokai-theme markdown-mode magit langtool go-mode git flycheck evil-leader color-theme-solarized cider auto-complete-auctex auctex android-mode ack ace-jump-mode)))
+    (csharp-mode zenburn-theme rust-mode org multiple-cursors multi-term monokai-theme markdown-mode magit langtool go-mode git flycheck evil-leader color-theme-solarized cider auto-complete-auctex auctex android-mode ack ace-jump-mode)))
  '(syslog-debug-face
    (quote
     ((t :background unspecified :foreground "#5FFFFF" :weight bold))))
