@@ -4,4 +4,11 @@
 # emacs --daemon has already been started.
 
 echo '===> Aliasing emc. May need to run source once done.'
-echo 'alias emc='\''emacsclient -t --alternate-editor=""'\''' >> ~/.bash_profile
+
+# OSX and Linux have different preferred places to dump
+# shell aliases
+if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    echo 'alias emc='\''emacsclient -t --alternate-editor=""'\''' >> ~/.bashrc
+else
+    echo 'alias emc='\''emacsclient -t --alternate-editor=""'\''' >> ~/.bash_profile
+fi
