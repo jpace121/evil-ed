@@ -4,4 +4,4 @@
 # emacs --daemon has already been started.
 
 echo '===> Aliasing emc. May need to run source once done.'
-echo 'alias emc='\''emacsclient -t --alternate-editor=""'\''' >> ~/.bash_profile
+echo 'alias emc='\''emacsclient -t --alternate-editor=""'\''' >> ~/.bashrc
