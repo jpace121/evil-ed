@@ -112,6 +112,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;;Open Arduino in cpp mode until I can write my own Arduino mode.
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c++-mode))
 
+; ROS .launch files should be opened as xml files.
+(add-to-list 'auto-mode-alist '("\\.launch\\'" . xml-mode))
+
 ;:Octave mode was great fail indent wise.
 ;(autoload 'octave-mode "octave-mod" nil t)
 ;(setq auto-mode-alist
@@ -233,6 +236,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;(define-key evil-insert-state-map (kbd "C-b") 'mc/skip-to-next-like-this)
 
 (setq scroll-conservatively 1)
+
+(global-unset-key (kbd "M-:"))
 
 (require 'evil)
 (evil-mode t)
