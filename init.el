@@ -112,8 +112,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;;Open Arduino in cpp mode until I can write my own Arduino mode.
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c++-mode))
 
-; ROS .launch files should be opened as xml files.
+;;ROS .launch files should be opened as xml files.
 (add-to-list 'auto-mode-alist '("\\.launch\\'" . xml-mode))
+
+;;Neya uses .h for C++ headers.
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 ;:Octave mode was great fail indent wise.
 ;(autoload 'octave-mode "octave-mod" nil t)
