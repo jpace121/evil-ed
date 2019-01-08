@@ -154,6 +154,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
+; Highlight ROS launch files as xml
+(add-to-list 'auto-mode-alist '("\\.launch\\'" . xml-mode))
+
 (require 'yasnippet)
 (yas-global-mode 1)
 
