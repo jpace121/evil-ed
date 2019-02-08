@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
 
-#UNTESTED:  Should make emc be an alias for emacsclient for ease of typing when
+# Should make emc be an alias for emacsclient for ease of typing when
 # emacs --daemon has already been started.
+# Also installs ~/.tmux.conf if it has not already been placed in $HOME
 
 echo '===> Aliasing emc. May need to run source once done.'
 # OSX and Linux have different preferred places to dump
@@ -11,3 +12,11 @@ if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 else
     echo 'alias emc='\''emacsclient -t --alternate-editor=""'\''' >> ~/.bash_profile
 fi
+
+echo '===> Copying tmux configuration file.'
+if [ ! -f ~/.tmux.conf ]; then
+   cp ./tmux.conf ~/.tmux.conf
+else
+   echo '===> ~/.tmux.conf already exists! Did not override.'
+fi
+
