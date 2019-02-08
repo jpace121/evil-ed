@@ -220,6 +220,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (evil-leader/set-key-for-mode 'latex-mode "lc" 'langtool-check-buffer)
 (evil-leader/set-key-for-mode 'latex-mode "lq" 'langtool-check-done)
 (evil-leader/set-key-for-mode 'c-mode "c" 'compile)
+(evil-leader/set-key-for-mode 'c++-mode "c" 'clang-format)
 ;(evil-leader/set-key-for-mode 'matlab-mode "c" 'matlab-shell-save-and-go)
 (evil-leader/set-key-for-mode 'matlab-mode "c" 'jp-matlab-run)
 ;(evil-leader/set-key-for-mode 'matlab-mode "p" 'matlab-publish-file-latex)
