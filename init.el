@@ -13,15 +13,27 @@
 (require 'navigate)
 
 (fset 'yes-or-no-p 'y-or-n-p)
+(setq show-paren-delay 0)
 (show-paren-mode t)
 
 (global-evil-leader-mode)
 (evil-leader/set-leader "<SPC>")
 
-; I need to figure out if this is actaully good at this point.
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq backup-inhibited t)
+
+(add-hook 'after-init-hook 'global-company-mode)
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-irony)
+)
+(eval-after-load 'company
+  '(setq company-backends (delete 'company-clang company-backends))
+)
+(global-set-key (kbd "TAB") 'company-complete)
+(evil-declare-change-repeat 'company-complete)
+(setq company-require-match 'never)
+
 
 ;http://superuser.com/questions/712237/safely-reload-files-which-are-changed-on-disc
 (global-auto-revert-mode 1)
@@ -63,15 +75,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (require 'multi-term)
 (setq multi-term-program "/bin/bash")
 
-(require 'auto-complete-config)
-(ac-config-default)
-(setq ac-auto-start nil)
-(ac-set-trigger-key "TAB")
-
 ;;Make * and # match whole word not subwords
 ;(setq-default evil-symbol-word-search t)
 
-(require 'auto-complete-auctex)
 ;(setq TeX-auto-save t) ;;evil command litters files
 (setq TeX-parse-self t)
 (setq TeX-save-query nil)
@@ -104,6 +110,14 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (add-hook 'prog-mode-hook 'jp-return)
 
 (setq-default tab-width 4 indent-tabs-mode nil)
+
+;;Irony mode set up.
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
 
 (setq c-default-style "bsd"
       c-basic-offset 4)

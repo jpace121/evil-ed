@@ -19,5 +19,17 @@ I have:
    chktex
    hunspell
 
+For Irony mode I downloaded (through apt):
+    libclang-7-dev
+    cmake
+    build-essential
+    clang-tools-7
+    build-essential
+and then ran:
+    irony-install-server
+
+;; Irony mode for ROS
+https://emacs.stackexchange.com/questions/28026/add-include-paths-to-flycheck-and-to-company-irony
+
 
 

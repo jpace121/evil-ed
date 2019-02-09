@@ -36,7 +36,7 @@
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (clang-format yasnippet-snippets csharp-mode zenburn-theme rust-mode org multiple-cursors multi-term monokai-theme markdown-mode magit langtool go-mode git flycheck evil-leader color-theme-solarized cider auto-complete-auctex auctex android-mode ack ace-jump-mode)))
+    (company-irony company flycheck-irony irony clang-format yasnippet-snippets csharp-mode zenburn-theme rust-mode org multiple-cursors multi-term monokai-theme markdown-mode magit langtool go-mode git flycheck evil-leader color-theme-solarized cider auto-complete-auctex auctex android-mode ack ace-jump-mode)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(syslog-debug-face
    (quote
