@@ -13,9 +13,9 @@ else
     echo 'alias emc='\''emacsclient -t --alternate-editor=""'\''' >> ~/.bash_profile
 fi
 
-echo '===> Copying tmux configuration file.'
+echo '===> Symlinking tmux configuration file.'
 if [ ! -f ~/.tmux.conf ]; then
-   cp ./tmux.conf ~/.tmux.conf
+   ln -s $HOME/.emacs.d/tmux.conf $HOME/.tmux.conf
 else
    echo '===> ~/.tmux.conf already exists! Did not override.'
 fi
