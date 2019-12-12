@@ -19,6 +19,8 @@
 (global-evil-leader-mode)
 (evil-leader/set-leader "<SPC>")
 
+(setq-default show-trailing-whitespace t)
+
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq backup-inhibited t)
@@ -122,6 +124,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (setq c-default-style "bsd"
       c-basic-offset 4)
 (c-set-offset 'case-label '+)
+
+(setq clang-format-executable "/usr/bin/clang-format-7")
 
 ;;Open Arduino in cpp mode until I can write my own Arduino mode.
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c++-mode))
