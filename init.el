@@ -104,6 +104,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (setq-default flycheck-flake8rc
     (concat user-emacs-directory "jimmy-files/flake8_settings.yaml"))
+(setq flycheck-check-syntax-automatically '(save))
 
 (defun jp-return ()
     (define-key evil-insert-state-map (kbd "RET") 'evil-ret-and-indent))
@@ -123,11 +124,15 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       c-basic-offset 4)
 (c-set-offset 'case-label '+)
 
+;; For neya computer
+(setq clang-format-executable "/usr/bin/clang-format-6.0")
+
 ;;Open Arduino in cpp mode until I can write my own Arduino mode.
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c++-mode))
 
 ;;ROS .launch files should be opened as xml files.
 (add-to-list 'auto-mode-alist '("\\.launch\\'" . xml-mode))
+(setq nxml-child-indent 4 nxml-attribute-indent 4)
 
 ;;Neya uses .h for C++ headers.
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
