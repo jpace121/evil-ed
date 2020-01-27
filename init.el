@@ -19,6 +19,8 @@
 (global-evil-leader-mode)
 (evil-leader/set-leader "<SPC>")
 
+(setq-default show-trailing-whitespace t)
+
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq backup-inhibited t)
@@ -101,24 +103,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (setq langtool-language-tool-jar (concat user-emacs-directory "jimmy-files/LanguageTool-3.1/languagetool-commandline.jar"))
 (setq langtool-default-language "en-US")
 
-(add-hook 'after-init-hook #'global-flycheck-mode)
-(setq-default flycheck-flake8rc
-    (concat user-emacs-directory "jimmy-files/flake8_settings.yaml"))
-(setq flycheck-check-syntax-automatically '(save))
-
 (defun jp-return ()
     (define-key evil-insert-state-map (kbd "RET") 'evil-ret-and-indent))
 (add-hook 'prog-mode-hook 'jp-return)
 
 (setq-default tab-width 4 indent-tabs-mode nil)
-
-;;Irony mode set up.
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'objc-mode-hook 'irony-mode)
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
 
 (setq c-default-style "bsd"
       c-basic-offset 4)
