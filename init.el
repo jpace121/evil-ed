@@ -25,18 +25,6 @@
 (setq auto-save-default nil)
 (setq backup-inhibited t)
 
-(add-hook 'after-init-hook 'global-company-mode)
-(eval-after-load 'company
-  '(add-to-list 'company-backends 'company-irony)
-)
-(eval-after-load 'company
-  '(setq company-backends (delete 'company-clang company-backends))
-)
-(global-set-key (kbd "TAB") 'company-complete)
-(evil-declare-change-repeat 'company-complete)
-(setq company-require-match 'never)
-
-
 ;http://superuser.com/questions/712237/safely-reload-files-which-are-changed-on-disc
 (global-auto-revert-mode 1)
 
@@ -60,26 +48,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 (global-set-key [escape] 'evil-exit-emacs-state)
 
-;Try out ido mode
-;;ido is too anooying normally, will kep this and the fix here for archive
-;;purposes
-;(setq ido-enable-flex-matching t)
-;(setq ido-everywhere t)
-;(ido-mode 1)
-;(define-key evil-ex-map "e " 'ido-find-file)
-;(define-key evil-ex-map "w " 'ido-write-file)
-;(define-key evil-ex-map "b " 'ido-switch-buffer)
-
-;Including this for historical sake.
-;Long term, I'm going to stick to using an external shell for
-;almost everything. If there are tasks that commonly need interaction
-;with the outside world, I'll write little functions for them.
-(require 'multi-term)
-(setq multi-term-program "/bin/bash")
-
-;;Make * and # match whole word not subwords
-;(setq-default evil-symbol-word-search t)
-
 ;(setq TeX-auto-save t) ;;evil command litters files
 (setq TeX-parse-self t)
 (setq TeX-save-query nil)
@@ -97,9 +65,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (setq ispell-really-hunspell t))
 
 ;Grammar checking
-;; Needs to be Linuxized
 (require 'langtool)
-;(setq langtool-language-tool-jar "/Users/jimmy/.emacs.d/jimmy-files/LanguageTool-3.1/languagetool-commandline.jar")
 (setq langtool-language-tool-jar (concat user-emacs-directory "jimmy-files/LanguageTool-3.1/languagetool-commandline.jar"))
 (setq langtool-default-language "en-US")
 
@@ -124,36 +90,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;;Neya uses .h for C++ headers.
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
-;:Octave mode was great fail indent wise.
-;(autoload 'octave-mode "octave-mod" nil t)
-;(setq auto-mode-alist
-    ;(cons '("\\.m$" . octave-mode) auto-mode-alist))
-;(add-hook 'octave-mode-hook 'auto-complete-mode)
-;(add-hook 'octave-mode-hook (lambda ()
-  ;(setq indent-tabs-mode t)
-  ;(setq tab-stop-list (number-sequence 2 200 2))
-  ;(setq tab-width 4)
-  ;(setq indent-line-function 'insert-tab) ))
-
 ;Add column to modeline
 (column-number-mode 't)
-
-;Only remaining bug, emacs doesn't unindent end statments
-;Add matlab to path on Mac so emacs gui can see it
-(if (and (eq system-type 'darwin) (file-exists-p "/Applications/MATLAB_R2016b.app/bin"))
-    (setq exec-path (append exec-path '("/Applications/MATLAB_R2013a.app/bin")))
-)
-
-;Only add the maltab stuff if on a Mac, and is matlab is installed,
-;if using matlab on linux would need to change this stuff?
-(if (executable-find "matlab")
-   (progn
-   (custom-set-variables
-     '(matlab-shell-command-switches '("-nodesktop -nosplash")))
-    (add-to-list 'load-path "~/.emacs.d/jimmy-files/matlab-emacs")
-    (load-library "matlab-load")
-    (require 'matlab-publish))
-)
 
 (autoload 'markdown-mode "markdown-mode"
      "Major mode for editing Markdown files" t)
@@ -175,9 +113,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key evil-visual-state-map (kbd "C-e") 'evil-end-of-line)
 (define-key evil-motion-state-map (kbd "C-e") 'evil-end-of-line)
 
-(require 'my-eshell)
-(load-library "jp-eshell")
-
 ;Rust compile commands
 (defun jp-cargo-build ()
     (interactive)
@@ -198,16 +133,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (python-shell-switch-to-shell)
 )
 
-(defun jp-matlab-run ()
-    (interactive)
-    (message "MATLAB-mode buggy. Please launch in tmux.")
-)
-
-;Android
-(require 'android-mode) ;do I need this?
-;;(custom-set-variables '(android-mode-skd-dir "~/Library/Android/sdk"))
-
-
 (evil-leader/set-key
   "f" 'evil-ace-jump-char-mode
   "s" 'evil-ace-jump-char-mode
@@ -216,10 +141,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   "b" 'buffer-menu
   "w" 'save-buffer
   "r" 'revert-buffer
-  ;"wj" 'evil-window-down
-  ;"wk" 'evil-window-up
-  ;"wh" 'evil-window-left
-  ;"wl" 'evil-window-right
   )
 ;Mode specific leader keys
 (evil-leader/set-key-for-mode 'latex-mode "c" 'TeX-command-master)
@@ -227,26 +148,16 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (evil-leader/set-key-for-mode 'latex-mode "lq" 'langtool-check-done)
 (evil-leader/set-key-for-mode 'c-mode "c" 'compile)
 (evil-leader/set-key-for-mode 'c++-mode "c" 'clang-format)
-;(evil-leader/set-key-for-mode 'matlab-mode "c" 'matlab-shell-save-and-go)
-(evil-leader/set-key-for-mode 'matlab-mode "c" 'jp-matlab-run)
-;(evil-leader/set-key-for-mode 'matlab-mode "p" 'matlab-publish-file-latex)
 (evil-leader/set-key-for-mode 'rust-mode "c" 'jp-cargo-build)
 (evil-leader/set-key-for-mode 'rust-mode "t" 'jp-cargo-test)
 (evil-leader/set-key-for-mode 'python-mode "c" 'jp-python-run)
 (evil-leader/set-key-for-mode 'org-mode "t" 'org-todo)
 (evil-leader/set-key-for-mode 'org-mode "c" 'org-toggle-checkbox)
 (evil-leader/set-key-for-mode 'org-mode "o" 'org-insert-todo-heading)
-;(evil-leader/set-key-for-mode 'matlab-shell-mode "c" 'buffer-menu)
-;^no worky, wrong name?
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (evil-define-key 'normal org-mode-map (kbd "TAB") 'org-cycle)
 ;(evil-set-initial-state 'org-mode 'emacs)
-
-;Multiple cursors is rather broken with evil-mode.
-;(require 'multiple-cursors)
-;(define-key evil-insert-state-map (kbd "C-n") 'mc/mark-next-like-this)
-;(define-key evil-insert-state-map (kbd "C-b") 'mc/skip-to-next-like-this)
 
 (setq scroll-conservatively 1)
 
@@ -255,7 +166,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (require 'evil)
 (evil-mode t)
 
-;(setq custom-file "~/.emacs.d/custom.el")
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file)
 
