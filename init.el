@@ -14,7 +14,7 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq show-paren-delay 0)
-(show-paren-mode t)
+(setq show-paren-mode nil)
 
 (global-evil-leader-mode)
 (evil-leader/set-leader "<SPC>")
