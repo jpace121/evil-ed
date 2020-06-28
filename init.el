@@ -25,6 +25,11 @@
 (setq auto-save-default nil)
 (setq backup-inhibited t)
 
+(add-hook 'after-init-hook 'global-company-mode)
+(global-set-key (kbd "TAB") 'company-complete)
+(evil-declare-change-repeat 'company-complete)
+(setq company-require-match 'never)
+
 ;http://superuser.com/questions/712237/safely-reload-files-which-are-changed-on-disc
 (global-auto-revert-mode 1)
 
