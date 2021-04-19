@@ -2,8 +2,7 @@
 ;; This needs "some" organizing.  Enjoy!
 
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")
+                         ("melpa" . "http://melpa.org/packages/")
                          ("ELPA" . "http://tromey.com/elpa/")))
 
 (package-initialize)
@@ -94,6 +93,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;;Neya uses .h for C++ headers.
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+
+;;Typescript
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
 
 ;Add column to modeline
 (column-number-mode 't)
