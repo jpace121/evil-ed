@@ -1,12 +1,42 @@
 ;; init.el --- Jimmy's emacs config
 ;; This needs "some" organizing.  Enjoy!
 
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")
-                         ("ELPA" . "http://tromey.com/elpa/")))
+;; Enable straight.el for packages.
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(package-initialize)
+(straight-use-package 'evil)
+(straight-use-package 'evil-leader)
+
+(straight-use-package 'ace-jump-mode)
+(straight-use-package 'auctex)
+(straight-use-package 'csharp-mode)
+(straight-use-package 'clojure-mode)
+(straight-use-package 'clang-format)
+(straight-use-package 'color-theme)
+(straight-use-package 'company)
+(straight-use-package 'flycheck)
+(straight-use-package 'git)
+(straight-use-package 'git-commit)
+(straight-use-package 'go-mode)
+(straight-use-package 'goto-chg)
+(straight-use-package 'markdown-mode)
+(straight-use-package 'monokai-theme)
+(straight-use-package 'org)
+(straight-use-package 'rust-mode)
+(straight-use-package 'yasnippet)
+(straight-use-package 'yasnippet-snippets)
+(straight-use-package 'zenburn-theme)
 
 (add-to-list 'load-path (concat user-emacs-directory "jimmy-files"))
 
@@ -68,11 +98,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (when (executable-find "hunspell")
     (setq-default ispell-program-name "hunspell")
     (setq ispell-really-hunspell t))
-
-;Grammar checking
-(require 'langtool)
-(setq langtool-language-tool-jar (concat user-emacs-directory "jimmy-files/LanguageTool-3.1/languagetool-commandline.jar"))
-(setq langtool-default-language "en-US")
 
 (defun jp-return ()
     (define-key evil-insert-state-map (kbd "RET") 'evil-ret-and-indent))
