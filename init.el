@@ -143,26 +143,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key evil-visual-state-map (kbd "C-e") 'evil-end-of-line)
 (define-key evil-motion-state-map (kbd "C-e") 'evil-end-of-line)
 
-;Rust compile commands
-(defun jp-cargo-build ()
-    (interactive)
-    (save-buffer)
-    (shell-command "cargo build")
-)
-
-(defun jp-cargo-test ()
-    (interactive)
-    (save-buffer)
-    (shell-command "cargo test")
-)
-
-(defun jp-python-run ()
-    (interactive)
-    (save-buffer)
-    (python-shell-send-buffer)
-    (python-shell-switch-to-shell)
-)
-
 (evil-leader/set-key
   "f" 'evil-ace-jump-char-mode
   "s" 'evil-ace-jump-char-mode
@@ -174,13 +154,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   )
 ;Mode specific leader keys
 (evil-leader/set-key-for-mode 'latex-mode "c" 'TeX-command-master)
-(evil-leader/set-key-for-mode 'latex-mode "lc" 'langtool-check-buffer)
-(evil-leader/set-key-for-mode 'latex-mode "lq" 'langtool-check-done)
-(evil-leader/set-key-for-mode 'c-mode "c" 'compile)
 (evil-leader/set-key-for-mode 'c++-mode "c" 'clang-format)
-(evil-leader/set-key-for-mode 'rust-mode "c" 'jp-cargo-build)
-(evil-leader/set-key-for-mode 'rust-mode "t" 'jp-cargo-test)
-(evil-leader/set-key-for-mode 'python-mode "c" 'jp-python-run)
 (evil-leader/set-key-for-mode 'org-mode "t" 'org-todo)
 (evil-leader/set-key-for-mode 'org-mode "c" 'org-toggle-checkbox)
 (evil-leader/set-key-for-mode 'org-mode "o" 'org-insert-todo-heading)
