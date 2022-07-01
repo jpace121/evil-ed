@@ -103,3 +103,6 @@
 [submodule "straight/repos/zenburn-emacs"]
 	path = straight/repos/zenburn-emacs
 	url = https://github.com/bbatsov/zenburn-emacs.git
+[submodule "straight/repos/emacs-undo-fu"]
+	path = straight/repos/emacs-undo-fu
+	url = https://gitlab.com/ideasman42/emacs-undo-fu.git

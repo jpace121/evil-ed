@@ -34,6 +34,7 @@
 (straight-use-package 'monokai-theme)
 (straight-use-package 'org)
 (straight-use-package 'rust-mode)
+(straight-use-package 'undo-fu)
 (straight-use-package 'yasnippet)
 (straight-use-package 'yasnippet-snippets)
 (straight-use-package 'zenburn-theme)
@@ -109,8 +110,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       c-basic-offset 4)
 (c-set-offset 'case-label '+)
 
-(setq clang-format-executable "/usr/bin/clang-format-7")
-
 ;;Open Arduino in cpp mode until I can write my own Arduino mode.
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c++-mode))
 
@@ -158,6 +157,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (evil-leader/set-key-for-mode 'org-mode "t" 'org-todo)
 (evil-leader/set-key-for-mode 'org-mode "c" 'org-toggle-checkbox)
 (evil-leader/set-key-for-mode 'org-mode "o" 'org-insert-todo-heading)
+
+(evil-set-undo-system 'undo-fu)
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (evil-define-key 'normal org-mode-map (kbd "TAB") 'org-cycle)
