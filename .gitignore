@@ -5,3 +5,5 @@ eshell
 auto-save-list
 network-security.data
 irony/
+straight/build-cache.el
+straight/build/

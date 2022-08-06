@@ -1,12 +1,42 @@
 ;; init.el --- Jimmy's emacs config
 ;; This needs "some" organizing.  Enjoy!
 
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")
-                         ("ELPA" . "http://tromey.com/elpa/")))
+;; Enable straight.el for packages.
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(package-initialize)
+(straight-use-package 'evil)
+(straight-use-package 'evil-leader)
+
+(straight-use-package 'ace-jump-mode)
+(straight-use-package 'auctex)
+(straight-use-package 'csharp-mode)
+(straight-use-package 'clojure-mode)
+(straight-use-package 'clang-format)
+(straight-use-package 'color-theme)
+(straight-use-package 'company)
+(straight-use-package 'flycheck)
+(straight-use-package 'git)
+(straight-use-package 'git-commit)
+(straight-use-package 'go-mode)
+(straight-use-package 'goto-chg)
+(straight-use-package 'markdown-mode)
+(straight-use-package 'monokai-theme)
+(straight-use-package 'org)
+(straight-use-package 'rust-mode)
+(straight-use-package 'yasnippet)
+(straight-use-package 'yasnippet-snippets)
+(straight-use-package 'zenburn-theme)
 
 (add-to-list 'load-path (concat user-emacs-directory "jimmy-files"))
 
@@ -69,11 +99,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (setq-default ispell-program-name "hunspell")
     (setq ispell-really-hunspell t))
 
-;Grammar checking
-(require 'langtool)
-(setq langtool-language-tool-jar (concat user-emacs-directory "jimmy-files/LanguageTool-3.1/languagetool-commandline.jar"))
-(setq langtool-default-language "en-US")
-
 (defun jp-return ()
     (define-key evil-insert-state-map (kbd "RET") 'evil-ret-and-indent))
 (add-hook 'prog-mode-hook 'jp-return)
@@ -118,26 +143,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key evil-visual-state-map (kbd "C-e") 'evil-end-of-line)
 (define-key evil-motion-state-map (kbd "C-e") 'evil-end-of-line)
 
-;Rust compile commands
-(defun jp-cargo-build ()
-    (interactive)
-    (save-buffer)
-    (shell-command "cargo build")
-)
-
-(defun jp-cargo-test ()
-    (interactive)
-    (save-buffer)
-    (shell-command "cargo test")
-)
-
-(defun jp-python-run ()
-    (interactive)
-    (save-buffer)
-    (python-shell-send-buffer)
-    (python-shell-switch-to-shell)
-)
-
 (evil-leader/set-key
   "f" 'evil-ace-jump-char-mode
   "s" 'evil-ace-jump-char-mode
@@ -149,13 +154,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   )
 ;Mode specific leader keys
 (evil-leader/set-key-for-mode 'latex-mode "c" 'TeX-command-master)
-(evil-leader/set-key-for-mode 'latex-mode "lc" 'langtool-check-buffer)
-(evil-leader/set-key-for-mode 'latex-mode "lq" 'langtool-check-done)
-(evil-leader/set-key-for-mode 'c-mode "c" 'compile)
 (evil-leader/set-key-for-mode 'c++-mode "c" 'clang-format)
-(evil-leader/set-key-for-mode 'rust-mode "c" 'jp-cargo-build)
-(evil-leader/set-key-for-mode 'rust-mode "t" 'jp-cargo-test)
-(evil-leader/set-key-for-mode 'python-mode "c" 'jp-python-run)
 (evil-leader/set-key-for-mode 'org-mode "t" 'org-todo)
 (evil-leader/set-key-for-mode 'org-mode "c" 'org-toggle-checkbox)
 (evil-leader/set-key-for-mode 'org-mode "o" 'org-insert-todo-heading)
