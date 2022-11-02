@@ -38,6 +38,8 @@
 (straight-use-package 'yasnippet)
 (straight-use-package 'yasnippet-snippets)
 (straight-use-package 'zenburn-theme)
+(straight-use-package 'prettier)
+(straight-use-package 'typescript-mode)
 
 (add-to-list 'load-path (concat user-emacs-directory "jimmy-files"))
 
@@ -119,6 +121,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;;Neya uses .h for C++ headers.
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
+;;Use .tsx for type script Typescript
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+
 ;Add column to modeline
 (column-number-mode 't)
 
@@ -156,6 +161,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (evil-leader/set-key-for-mode 'c++-mode "c" 'clang-format)
 (evil-leader/set-key-for-mode 'org-mode "t" 'org-todo)
 (evil-leader/set-key-for-mode 'org-mode "c" 'org-toggle-checkbox)
+(evil-leader/set-key-for-mode 'typescript-mode "c" 'prettier-prettify)
 (evil-leader/set-key-for-mode 'org-mode "o" 'org-insert-todo-heading)
 
 (evil-set-undo-system 'undo-fu)

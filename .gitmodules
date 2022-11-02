@@ -106,3 +106,21 @@
 [submodule "straight/repos/emacs-undo-fu"]
 	path = straight/repos/emacs-undo-fu
 	url = https://gitlab.com/ideasman42/emacs-undo-fu.git
+[submodule "straight/repos/prettier-emacs"]
+	path = straight/repos/prettier-emacs
+	url = https://github.com/prettier/prettier-emacs.git
+[submodule "straight/repos/editorconfig-emacs"]
+	path = straight/repos/editorconfig-emacs
+	url = https://github.com/editorconfig/editorconfig-emacs.git
+[submodule "straight/repos/iter2"]
+	path = straight/repos/iter2
+	url = https://github.com/doublep/iter2.git
+[submodule "straight/repos/nvm.el"]
+	path = straight/repos/nvm.el
+	url = https://github.com/rejeep/nvm.el.git
+[submodule "straight/repos/prettier.el"]
+	path = straight/repos/prettier.el
+	url = https://github.com/jscheid/prettier.el.git
+[submodule "straight/repos/typescript.el"]
+	path = straight/repos/typescript.el
+	url = https://github.com/emacs-typescript/typescript.el.git
