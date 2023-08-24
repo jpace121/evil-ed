@@ -181,3 +181,5 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (load custom-file)
 
 (menu-bar-mode -1)
+
+(setq native-comp-async-report-warnings-errors 'silent)
