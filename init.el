@@ -183,3 +183,4 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (menu-bar-mode -1)
 
 (setq native-comp-async-report-warnings-errors 'silent)
+(setq warning-minimum-level :emergency)
