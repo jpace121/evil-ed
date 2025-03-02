@@ -26,8 +26,6 @@
 (straight-use-package 'color-theme)
 (straight-use-package 'company)
 (straight-use-package 'flycheck)
-(straight-use-package 'git)
-(straight-use-package 'git-commit)
 (straight-use-package 'go-mode)
 (straight-use-package 'goto-chg)
 (straight-use-package 'markdown-mode)
